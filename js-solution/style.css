@@ -1,0 +1,188 @@
+/* Properties */
+
+@Property --gdClrA {
+
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #2873E9;
+  
+}
+  
+@Property --gdClrB {
+  
+    syntax: '<color>';
+    inherits: false;
+    initial-value: #045DE9;
+  
+}
+
+
+
+/* Pseudo Elements */
+/*
+  Reference source code & author:
+
+    https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp, by W3Schools
+
+*/
+
+::-webkit-scrollbar {
+    width: 1em; /* Scrollbar track width*/
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #E0E0E0FF; /* Scrollbar track color*/
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #909090;
+    border: 2px hidden #FFF;
+    border-radius: 0.5em;  /* Scrollbar thumb settings*/
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #606060;  /* Hovered scrollbar thumb settings*/
+  }
+
+
+
+/* Elements */
+
+* {
+
+    font-family: 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+
+}
+
+a {
+
+    color: #0969DA;
+    cursor: pointer;
+    text-decoration: none;
+  
+  }
+  
+a:hover {
+  
+    color: #6AF;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+  
+}
+
+code {
+
+    background: #EEE;
+    border: .06em solid #AAA;
+    font-family: 'Consolas', 'Courier New', Courier, monospace;
+    margin: 0 .2em;
+    padding: 0 .1em;
+
+}
+
+input[type='file'] {
+
+    display: none;
+  
+}
+
+p {
+
+    padding: .8em .5em .8em;
+
+}
+
+
+
+/* Classes */
+
+/*
+  Reference source code & author:
+
+    https://github.com/chokcoco/iCSS/issues/109, by @chokcoco on GitHub
+
+*/
+
+.botton {
+
+    background: linear-gradient(0deg, var(--gdClrA) 0%, var(--gdClrB) 75%);
+    border-radius: 1em;
+    color: #FFF;
+    display: block;
+    margin-left: 40%;
+    margin-top: 2em;
+    padding: .15em;
+    text-align: center;
+    transition: .4s --gdClrA, .4s --gdClrB;
+    -webkit-transition: .4s --gdClrA, .4s --gdClrB;
+    width: 20%;
+
+}
+
+.botton:hover {
+
+    color: #FFF;
+    --gdClrA: #769FE0;
+    --gdClrB: #5F9DFF;
+
+}
+
+
+
+/* IDs */
+
+#convert-section {
+
+    display: none;
+
+}
+
+#convert-info {
+
+    font-style: italic;
+    text-align: center;
+    padding-bottom: 0;
+    width: 98.5%;
+
+}
+
+#footer {
+
+    bottom: 0;
+    text-align: center;
+    position: absolute;
+    width: 98.5%;
+
+}
+
+#info-text {
+
+    padding: .8em .5em .8em;
+
+}
+
+#page {
+
+    background: linear-gradient(180deg, rgba(255,238,238,1) 0%, rgba(255,255,255,1) 100%);
+
+}
+
+#title-section {
+
+    width: 100%;
+
+}
+
+#title-text {
+
+    background: linear-gradient(135deg, rgba(235,64,52,1) 0%, rgba(223,67,56,1) 50%, rgba(244,88,37,1) 50%, rgba(221,83,38,1) 80%, rgba(246,143,48,1) 80%, rgba(219,127,42,1) 100%);
+    color: #FFF;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 1.5em .5em 1.5em;
+    width: 98.5%;
+
+}
