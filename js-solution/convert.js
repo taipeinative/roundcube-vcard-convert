@@ -3,6 +3,7 @@ var contact = [];
 const department = [];
 const newContact = [];
 const org = [];
+const photo = [];
 const title = [];
 
 const T = new Date(Date.now());
@@ -10,6 +11,11 @@ const T = new Date(Date.now());
 var fileName = "contact.vcf";
 var downloadFileName;
 var handle = 1;
+
+var propList = [];
+var propIndexList = [];
+var startIndex;
+var endIndex;
 
 // Core functions.
 // Initialize and add listeners to 'buttons'.
@@ -124,6 +130,43 @@ function convert() {
 
     for (i = 0 ; i < contact.length ; i++ ) {
 
+      // if ( contact[i].match(/(?<=PHOTO;ENCODING=B:).*/) ) {
+
+      //   propList = [];
+      //   propIndexList = [];
+      //   propList = contact[i].match(/.*:/gm);
+
+      //   const regex = /.*:/gm;
+      //   let lastMatch;
+
+      //   while ((lastMatch = regex.exec(contact[i])) !== null) {
+
+      //     if (lastMatch.index === regex.lastIndex) {
+
+      //       regex.lastIndex++;
+
+      //     } else {
+
+      //       propIndexList.push(lastMatch.index);
+
+      //     }
+
+      //   }
+
+      //   startIndex = propIndexList[propList.indexOf('PHOTO;ENCODING=B:')];
+      //   endIndex = propIndexList[propList.indexOf('PHOTO;ENCODING=B:') + 1];
+      //   temp = contact[i].substring(startIndex,endIndex);
+      //   temp = temp.match(/(?<=PHOTO;ENCODING=B:)(.|\n|\r)*/);
+      //   const empty = /\n| |\r/gm;
+      //   temp = temp[0].replace(empty,``);
+      //   photo[i] = temp;
+
+      // } else {
+
+      //   photo[i] = "";
+
+      // }
+
       if ( contact[i].match(/(?<=X-DEPARTMENT:).*/) ) {
 
         department[i] = contact[i].match(/(?<=X-DEPARTMENT:).*/);
@@ -164,7 +207,8 @@ function convert() {
 
     for (i = 0 ; i < contact.length ; i++ ) {
 
-      newContact[i] = contact[i].replace(/(?<=ORG:).*/,`${org[i]};${department[i]};${title[i]}`);
+      newContact[i] = contact[i].replace(/ORG:.*/,`item1.ORG:${org[i]};${department[i]}`);
+      newContact[i] =  newContact[i].replace(/(?=END:VCARD)/,`item2.TITLE:${title[i]}\r\n`);
 
       if ( newContact[i].search(/(?<=REV:).*/) != -1 ) {
 
@@ -175,6 +219,13 @@ function convert() {
         newContact[i] = newContact[i].replace(/(?=END:VCARD)/,`REV:${T.getUTCFullYear()}${T.getUTCMonth()}${T.getUTCDay()}T${T.getUTCHours()}${T.getUTCMinutes()}${T.getUTCSeconds()}Z\r\n`);
 
       }
+
+      // if ( newContact[i].search(/(?<=PHOTO;ENCODING=B:).*/) != -1 ) {
+
+      //   removed = newContact[i].substring(0, startIndex - 1) + newContact[i].substring(endIndex, newContact[i].length);
+      //   newContact[i] = removed.replace(/(?=END:VCARD)/,`PHOTO:data:image/jpeg;base64,${photo[i]}\r\n`);
+
+      // }
 
       if ( newContact[i].search(/(?<=ROLE:).*/) == -1 ) {
 
